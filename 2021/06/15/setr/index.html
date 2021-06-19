@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Noth1n9&#039;s Home</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Noth1n9"><meta name="msapplication-TileImage" content="/img/logo.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Noth1n9"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="[2021CVPR]Rethinking Semantic Segmentation from a Sequence-to-Sequence Perspective with Transformers  &amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;e"><meta property="og:type" content="blog"><meta property="og:title" content="Noth1n9&#039;s Home"><meta property="og:url" content="http://noth1n9.com/2021/06/15/setr/"><meta property="og:site_name" content="Noth1n9&#039;s Home"><meta property="og:description" content="[2021CVPR]Rethinking Semantic Segmentation from a Sequence-to-Sequence Perspective with Transformers  &amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;emsp;&amp;amp;e"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://noth1n9.com/covers/setr_model.png"><meta property="article:published_time" content="2021-06-15T14:05:08.000Z"><meta property="article:modified_time" content="2021-06-19T03:05:58.645Z"><meta property="article:author" content="Shaohua Yang"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/covers/setr_model.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://noth1n9.com/2021/06/15/setr/"},"headline":"Noth1n9's Home","image":["http://noth1n9.com/covers/setr_model.png"],"datePublished":"2021-06-15T14:05:08.000Z","dateModified":"2021-06-19T03:05:58.645Z","author":{"@type":"Person","name":"Shaohua Yang"},"description":"[2021CVPR]Rethinking Semantic Segmentation from a Sequence-to-Sequence Perspective with Transformers  &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;e"}</script><link rel="canonical" href="http://noth1n9.com/2021/06/15/setr/"><link rel="icon" href="/img/logo.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.png" alt="Noth1n9&#039;s Home" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/noth1n9"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-9-desktop is-9-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/covers/setr_model.png" alt="/covers/setr_model.png"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-06-15T14:05:08.000Z" title="2021/6/15 下午10:05:08">2021-06-15</time>发表</span><span class="level-item"><time dateTime="2021-06-19T03:05:58.645Z" title="2021/6/19 上午11:05:58">2021-06-19</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">论文笔记</a></span><span class="level-item">7 分钟读完 (大约979个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile"> </h1><div class="content"><p><strong>[2021CVPR]Rethinking Semantic Segmentation from a Sequence-to-Sequence Perspective with Transformers</strong></p>
+<p> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; —— Noth1n9</p>
+<span id="more"></span>
+
+<blockquote>
+<p>论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2012.15840.pdf">https://arxiv.org/pdf/2012.15840.pdf</a></p>
+<p>pytorch源码：<a target="_blank" rel="noopener" href="https://github.com/fudan-zvg/SETR">https://github.com/fudan-zvg/SETR</a></p>
+</blockquote>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a><strong>引言</strong></h2><p>在以往常见的语义分割模型种，FCN的Encoder-Decoder结构被广泛的使用，但在大多数的Encoder中，为了增大感受野减少计算量，会逐层减少特征的分辨率。但这样对于分割这类需要精细语义的任务会损失一些细节信息，因此一些增大感受野的技巧如空洞卷积、全局注意力机制等别应用在Encoder和Decoder之间。</p>
+<p>在该论文中，作者将Transformer应用到语义分割任务中，将图像序列化后输入到Transformer中，在每层中都可以使用self-attention来获得全局信息，并且特征分辨率不会逐层减少，之后再通过一个Decoder来得到图像分割结果，并在多个数据集上取得较好的成绩。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a><strong>方法</strong></h2><img src="https://res.cloudinary.com/dkbyxgkhc/image/upload/v1623986153/blog_setr/setr_model_b1hlom.png" style="zoom:67%;">
+
+<p>上图为SETR模型的主要框架，于其他方法类似，为了获得Transformer的输入，和其他方法一样先将图片切分成16×16的patches，再将每一个patch拉平成一维向量后通过全连接层映射到C维空间，因此得到的输入特征大小为$R^{L*C}$，其中L为序列长度。</p>
+<p>同时为了编码位置信息，添加了一个可学习的Embedding特征，之后就可以将特征输入到多个Transformer层中。</p>
+<p>Transformer的内部结构设计并没有改变，使用了Multi-head Attention、Layer Norm、MLP和残差连接。得到了Encoder的特征之后，还需要Decoder来恢复图像分辨率得到分割结果，这里作者使用了三种不同的Decoder设计。由于每层Transofmer并不会改变特征的分辨率，输出特征的大小都是$R^{L*C}$，在本文中的设置为${\frac{HW}{256}*1024}$，为了获得二维的输出，先将输入reshape到${\frac{H}{16}*\frac{W}{16}*1024}$的大小，再通过不同的Decoder进行上采样得到分割结果。</p>
+<h3 id="Navie-upsampling"><a href="#Navie-upsampling" class="headerlink" title="Navie upsampling"></a><strong>Navie upsampling</strong></h3><p>该方法的最简单朴素的，先通过两层1*1的卷积将维度映射到类别的数量，再对其直接使用双线性插值进行上采样到原始图像分辨率，训练时将其计算cross entropy loss。</p>
+<h3 id="Progressive-upsampling"><a href="#Progressive-upsampling" class="headerlink" title="Progressive upsampling"></a><strong>Progressive upsampling</strong></h3><p><img src="https://res.cloudinary.com/dkbyxgkhc/image/upload/v1623986153/blog_setr/setr_decoder1_mi6qdm.png"></p>
+<p>该方法如上图所示和常见分割模型的Decoder相似，逐层对特征进行上采样，每层上采样两倍，总共进行4次上采样来得到分割结果。</p>
+<h3 id="Multi-level-feature-aggregation"><a href="#Multi-level-feature-aggregation" class="headerlink" title="Multi level feature aggregation"></a><strong>Multi level feature aggregation</strong></h3><p><img src="https://res.cloudinary.com/dkbyxgkhc/image/upload/v1623986153/blog_setr/setr_decoder2_btmlde.png"></p>
+<p>该方法类似FCN特征金字塔模型，采用了多层的特征，接着将每一层特征reshape后通过3层卷积层（1*1，3*3，3*3），并且第一层和第三层会对特征通道减半，之后再通过一个4倍的双线性插值上采样恢复到图像原分辨率，同时为了聚合不同层的特征，会从顶向下将特征逐像素加到下层的特征中并接上一个3*3的卷积。获得多层的结果之后将其拼接之后再通过一层卷积和4倍的双线性插值上采样得到最终的结果。</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a><strong>实验</strong></h2><p>在该方法中，作者同样提出了不同规模的模型，同时为了发挥Transformer预训练模型的优势，使用了ViT和DeiT模型预训练的权重参数进行初始化。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p><a href="http://noth1n9.com/2021/06/15/setr/">http://noth1n9.com/2021/06/15/setr/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Shaohua Yang</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-06-15</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-06-19</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><div class="social-share"></div><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2021/06/06/mlp-mixer/"><span class="level-item"> </span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'http://noth1n9.com/2021/06/15/setr/';
+            this.page.identifier = '2021/06/15/setr/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'welcome' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#引言"><span class="level-left"><span class="level-item">1</span><span class="level-item">引言</span></span></a></li><li><a class="level is-mobile" href="#方法"><span class="level-left"><span class="level-item">2</span><span class="level-item">方法</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Navie-upsampling"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">Navie upsampling</span></span></a></li><li><a class="level is-mobile" href="#Progressive-upsampling"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">Progressive upsampling</span></span></a></li><li><a class="level is-mobile" href="#Multi-level-feature-aggregation"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">Multi level feature aggregation</span></span></a></li></ul></li><li><a class="level is-mobile" href="#实验"><span class="level-left"><span class="level-item">3</span><span class="level-item">实验</span></span></a></li></ul></div></div><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.png" alt="Noth1n9&#039;s Home" height="28"></a><p class="is-size-7"><span>&copy; 2021 Shaohua Yang</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'folded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/tororo.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false}});</script></body></html>
